@@ -1,0 +1,922 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaTech | Digital Solutions</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #635bff;
+            --dark: #101426;
+            --light: #f5f7ff;
+            --text: #555c72;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Navigation */
+        header {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 75px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+            border: none;
+            background: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #4840d4;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #101426, #25265a, #4036a7);
+            color: white;
+            padding: 110px 0;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            color: #b8b4ff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 5vw, 65px);
+            line-height: 1.12;
+            margin: 20px 0;
+        }
+
+        .hero h1 span {
+            color: #a7a1ff;
+        }
+
+        .hero p {
+            color: #d0d2e6;
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 550px;
+        }
+
+        .hero-art {
+            min-height: 330px;
+            border-radius: 30px;
+            background:
+                radial-gradient(circle at 30% 25%, #8b83ff 0, transparent 28%),
+                radial-gradient(circle at 75% 70%, #00d5ff 0, transparent 30%),
+                linear-gradient(135deg, #292c66, #151a38);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 25px 80px #0005;
+        }
+
+        .hero-icon {
+            font-size: 115px;
+            filter: drop-shadow(0 0 25px #aaa5ff);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 45px 0;
+            text-align: center;
+        }
+
+        .stat h2 {
+            color: var(--primary);
+            font-size: 34px;
+        }
+
+        .stat p {
+            color: var(--text);
+        }
+
+        /* Sections */
+        section.content-section {
+            padding: 90px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 45px;
+        }
+
+        .section-heading .eyebrow {
+            color: var(--primary);
+        }
+
+        .section-heading h2 {
+            font-size: 38px;
+            margin: 12px 0;
+        }
+
+        .section-heading p {
+            color: var(--text);
+        }
+
+        .services {
+            background: var(--light);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #e8eaf5;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 40px #2222;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: #eeedff;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            font-size: 21px;
+        }
+
+        .card p {
+            color: var(--text);
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-visual {
+            background: linear-gradient(135deg, #e6e4ff, #c9f3ff);
+            border-radius: 25px;
+            min-height: 350px;
+            display: grid;
+            place-items: center;
+            font-size: 110px;
+        }
+
+        .about-text h2 {
+            font-size: 38px;
+            margin: 15px 0;
+        }
+
+        .about-text p {
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .check-list {
+            list-style: none;
+            margin: 20px 0 30px;
+        }
+
+        .check-list li {
+            margin: 12px 0;
+        }
+
+        .check-list li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        /* Projects */
+        .projects {
+            background: var(--light);
+        }
+
+        .project-card {
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            border: 1px solid #e8eaf5;
+        }
+
+        .project-image {
+            min-height: 190px;
+            display: grid;
+            place-items: center;
+            font-size: 75px;
+        }
+
+        .project-image.one {
+            background: linear-gradient(135deg, #d9d5ff, #a8a1ff);
+        }
+
+        .project-image.two {
+            background: linear-gradient(135deg, #b9f1ff, #75c9ed);
+        }
+
+        .project-image.three {
+            background: linear-gradient(135deg, #ffe0ba, #ffb7a8);
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info p {
+            color: var(--text);
+            margin: 10px 0;
+        }
+
+        .project-info a {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Testimonials */
+        .testimonial {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .testimonial .section-heading p {
+            color: #c3c8dc;
+        }
+
+        .quote {
+            max-width: 800px;
+            margin: auto;
+            font-size: 24px;
+            font-style: italic;
+        }
+
+        .client {
+            margin-top: 25px;
+            color: #c4c0ff;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #dce0ed;
+            border-radius: 8px;
+            font: inherit;
+        }
+
+        .contact-form textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            outline: 2px solid #c4c0ff;
+            border-color: var(--primary);
+        }
+
+        #form-message {
+            color: #16804a;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #101426;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 35px;
+        }
+
+        footer p,
+        footer a {
+            color: #c0c5d8;
+        }
+
+        footer h3,
+        footer h4 {
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin: 9px 0;
+        }
+
+        .copyright {
+            border-top: 1px solid #30364c;
+            padding-top: 20px;
+            text-align: center;
+            color: #aeb4ca;
+        }
+
+        @media (max-width: 850px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 15px 5%;
+                box-shadow: 0 10px 15px #0001;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 12px 0;
+            }
+
+            .hero-content,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 75px 0;
+            }
+
+            .hero-art {
+                min-height: 250px;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .card-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section.content-section {
+                padding: 60px 0;
+            }
+
+            .section-heading h2,
+            .about-text h2 {
+                font-size: 30px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .btn-outline {
+                margin: 12px 0 0;
+            }
+
+            .quote {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">NovaTech.</a>
+
+            <button class="menu-btn" id="menu-btn"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false">☰</button>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact" class="btn">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <div>
+                    <span class="eyebrow">Innovate. Create. Grow.</span>
+                    <h1>Building Digital Experiences That <span>Matter.</span></h1>
+                    <p>
+                        We help businesses grow with modern websites,
+                        powerful software, intelligent data solutions,
+                        and creative digital strategies.
+                    </p>
+                    <a href="#services" class="btn">Explore Services</a>
+                    <a href="#contact" class="btn btn-outline">Get Started</a>
+                </div>
+
+                <div class="hero-art" aria-label="Abstract technology illustration">
+                    <div class="hero-icon">🚀</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics -->
+        <div class="container stats">
+            <div class="stat">
+                <h2>120+</h2>
+                <p>Projects Delivered</p>
+            </div>
+            <div class="stat">
+                <h2>80+</h2>
+                <p>Happy Clients</p>
+            </div>
+            <div class="stat">
+                <h2>5+</h2>
+                <p>Years of Experience</p>
+            </div>
+            <div class="stat">
+                <h2>24/7</h2>
+                <p>Customer Support</p>
+            </div>
+        </div>
+
+        <!-- Services -->
+        <section class="content-section services" id="services">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">What We Do</span>
+                    <h2>Our Services</h2>
+                    <p>
+                        Everything you need to build, launch, and grow
+                        your digital business.
+                    </p>
+                </div>
+
+                <div class="card-grid">
+                    <article class="card">
+                        <div class="card-icon">💻</div>
+                        <h3>Web Development</h3>
+                        <p>
+                            Responsive, fast, and modern websites designed
+                            to deliver excellent user experiences.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">📱</div>
+                        <h3>App Development</h3>
+                        <p>
+                            Practical mobile and web applications built
+                            around your business requirements.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">📊</div>
+                        <h3>Data Analytics</h3>
+                        <p>
+                            Turn raw data into meaningful insights,
+                            dashboards, and better business decisions.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">☁️</div>
+                        <h3>Cloud Solutions</h3>
+                        <p>
+                            Deploy and scale applications using modern
+                            cloud infrastructure and DevOps practices.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🤖</div>
+                        <h3>AI & Automation</h3>
+                        <p>
+                            Improve efficiency with intelligent tools,
+                            automated workflows, and machine learning.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🎨</div>
+                        <h3>UI/UX Design</h3>
+                        <p>
+                            Create intuitive, accessible, and attractive
+                            digital products your customers enjoy using.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="content-section" id="about">
+            <div class="container about-grid">
+                <div class="about-visual">🌐</div>
+
+                <div class="about-text">
+                    <span class="eyebrow" style="color:#635bff">
+                        About NovaTech
+                    </span>
+                    <h2>Your Vision, Our Technology</h2>
+                    <p>
+                        We are a digital solutions team focused on helping
+                        businesses solve real problems through technology.
+                        Our approach combines creativity, engineering,
+                        and data-driven thinking.
+                    </p>
+                    <p>
+                        From the first idea to launch and beyond, we work
+                        to make technology useful, reliable, and accessible.
+                    </p>
+
+                    <ul class="check-list">
+                        <li>Solutions tailored to your needs</li>
+                        <li>Modern and reliable technologies</li>
+                        <li>Transparent communication</li>
+                        <li>Ongoing improvement and support</li>
+                    </ul>
+
+                    <a href="#contact" class="btn">Work With Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="content-section projects" id="projects">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Our Portfolio</span>
+                    <h2>Featured Projects</h2>
+                    <p>
+                        A sample of the digital experiences and solutions
+                        we love building.
+                    </p>
+                </div>
+
+                <div class="card-grid">
+                    <article class="project-card">
+                        <div class="project-image one">🛍️</div>
+                        <div class="project-info">
+                            <h3>ShopSmart</h3>
+                            <p>
+                                An e-commerce storefront concept focused
+                                on simple shopping and product discovery.
+                            </p>
+                            <a href="#contact">Discuss a similar project →</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-image two">📈</div>
+                        <div class="project-info">
+                            <h3>Insight Dashboard</h3>
+                            <p>
+                                A business analytics dashboard concept
+                                for tracking performance and key metrics.
+                            </p>
+                            <a href="#contact">Discuss a similar project →</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-image three">🏥</div>
+                        <div class="project-info">
+                            <h3>CareConnect</h3>
+                            <p>
+                                A healthcare platform concept to simplify
+                                information and appointment workflows.
+                            </p>
+                            <a href="#contact">Discuss a similar project →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial -->
+        <section class="content-section testimonial">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Testimonials</span>
+                    <h2>What Clients Say</h2>
+                    <p>Great partnerships begin with understanding.</p>
+                </div>
+
+                <blockquote class="quote">
+                    “The team understood our requirements and turned our
+                    idea into a clear, professional digital experience.”
+                </blockquote>
+                <p class="client">— Sample Client Feedback</p>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="content-section" id="contact">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Let's Talk</span>
+                    <h2>Start Your Next Project</h2>
+                    <p>
+                        Tell us a little about your idea and what you want
+                        to achieve.
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Let's build something great.</h3>
+                        <p>
+                            Have a question, a project idea, or a business
+                            challenge? Use the form to prepare your message.
+                        </p>
+                        <p>📧 Email: hello@example.com</p>
+                        <p>📍 Location: India</p>
+                        <p>🕒 Hours: Monday–Friday</p>
+                    </div>
+
+                    <form class="contact-form" id="contact-form">
+                        <input type="text" id="name" name="name"
+                               placeholder="Your full name"
+                               autocomplete="name" required>
+
+                        <input type="email" id="email" name="email"
+                               placeholder="Your email address"
+                               autocomplete="email" required>
+
+                        <select id="service" name="service" required>
+                            <option value="">Choose a service</option>
+                            <option>Web Development</option>
+                            <option>App Development</option>
+                            <option>Data Analytics</option>
+                            <option>Cloud Solutions</option>
+                            <option>AI & Automation</option>
+                            <option>UI/UX Design</option>
+                            <option>Other</option>
+                        </select>
+
+                        <textarea id="message" name="message"
+                                  placeholder="Tell us about your project..."
+                                  required></textarea>
+
+                        <button type="submit" class="btn">
+                            Prepare Message
+                        </button>
+
+                        <p id="form-message" role="status"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="logo">NovaTech.</h3>
+                    <p>
+                        Building useful digital experiences with
+                        creativity, technology, and purpose.
+                    </p>
+                </div>
+
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Follow Us</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
+                        <li><a href="https://github.com/">GitHub</a></li>
+                        <li><a href="https://www.instagram.com/">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>
+                    &copy; <span id="year"></span> NovaTech.
+                    All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation
+        const menuButton = document.getElementById("menu-btn");
+        const navLinks = document.getElementById("nav-links");
+
+        menuButton.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("active");
+            menuButton.setAttribute("aria-expanded", isOpen);
+            menuButton.textContent = isOpen ? "✕" : "☰";
+        });
+
+        // Close mobile menu after selecting a link
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("active");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.textContent = "☰";
+            });
+        });
+
+        // Automatically update the copyright year
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        // Contact form demo
+        document.getElementById("contact-form")
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const service = document.getElementById("service").value;
+                const message = document.getElementById("message").value.trim();
+                const output = document.getElementById("form-message");
+
+                if (!name || !email || !service || !message) {
+                    output.textContent = "Please complete all fields.";
+                    return;
+                }
+
+                output.textContent =
+                    "Thanks, " + name +
+                    "! Your form works in demo mode. Connect a backend " +
+                    "or email service to send your message.";
+
+                this.reset();
+            });
+    </script>
+
+</body>
+</html>
